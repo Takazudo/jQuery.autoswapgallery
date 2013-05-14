@@ -135,6 +135,7 @@ do ($=jQuery, window=window, document=document) ->
 
     to: (nextIndex, immediately = false) ->
 
+      @_timer.restart()
       nextIndex = @adjustOverIndex nextIndex
       animate = not immediately
       @_fitty.to nextIndex, animate

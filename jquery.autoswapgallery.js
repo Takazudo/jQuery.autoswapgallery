@@ -188,6 +188,7 @@
         if (immediately == null) {
           immediately = false;
         }
+        this._timer.restart();
         nextIndex = this.adjustOverIndex(nextIndex);
         animate = !immediately;
         this._fitty.to(nextIndex, animate);
