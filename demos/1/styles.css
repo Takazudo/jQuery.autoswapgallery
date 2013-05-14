@@ -1,0 +1,91 @@
+* {
+  margin:0;
+  padding:0;
+}
+a {
+  color:#00f;
+}
+button {
+  padding:4px;
+}
+body {
+  font-family:sans-serif;
+}
+.all {
+  padding:20px 10px;
+  overflow-x:hidden;
+}
+
+.box {
+  width:260px;
+  height:260px;
+  background:#333;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  cursor:move;
+  margin:0 auto 20px;
+  position:relative;
+  overflow:hidden;
+}
+.box,
+.box * {
+  -webkit-touch-callout: none;
+  touch-callout: none;
+}
+  .box-inner {
+    position:absolute;
+    left:0;
+    top:0;
+    height:100%;
+    width:2520px;
+  }
+    .item {
+      float:left;
+      height:100%;
+      width:260px;
+      font-size:100px;
+      text-align:center;
+    }
+    .item:nth-child(even) {
+      background:#f00;
+      color:#ddd;
+    }
+    .item:nth-child(odd) {
+      background:#ddd;
+      color:#f00;
+    }
+    .item img {
+      width:100%;
+      height:100%;
+      display:block;
+    }
+
+.boxwrap {
+  width:300px;
+  position:relative;
+  margin:0 auto;
+}
+  .toPrev {
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:20px;
+    background:#666;
+    color:#fff;
+    line-height:260px;
+    text-align:center;
+  }
+  .toNext {
+    position:absolute;
+    right:0;
+    top:0;
+    bottom:0;
+    width:20px;
+    background:#666;
+    color:#fff;
+    line-height:260px;
+    text-align:center;
+  }

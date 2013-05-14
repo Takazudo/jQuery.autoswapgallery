@@ -1,0 +1,65 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="styles.css">
+<script src="../../libs/jquery/1.5.1/jquery.js"></script>
+<script src="../../jQuery.touchdragh/libs/jquery.transit.js"></script>
+<script src="../../jQuery.touchdragh/jquery.touchdragh.js"></script>
+<script src="../../jquery.autoswapgallery.js"></script>
+<script>
+$(function() {
+
+  $('.boxwrap').each(function() {
+
+    var $wrap = $(this);
+    var $box = $('.box', this);
+
+    $box.autoswapgallery({
+      interval: 2000,
+      startDelay: 2000,
+      selector_inner: '.box-inner',
+      selector_item: '.item'
+    });
+
+    var gallery = $box.data('autoswapgallery');
+
+    $wrap
+      .delegate('.toPrev', 'click', function(e) {
+        e.preventDefault();
+        gallery.prev();
+      })
+      .delegate('.toNext', 'click', function(e) {
+        e.preventDefault();
+        gallery.next();
+      });
+
+  });
+
+});
+</script>
+</head>
+<body><div class="all">
+
+<div class="boxwrap">
+  <a class="toPrev" href="#">&lt;</a>
+  <div class="box">
+    <div class="box-inner">
+      <div class="item first">A</div>
+      <div class="item"><a href="http://example.com">B</a></div>
+      <div class="item"><img src="../imgs/1.jpg" alt=""></div>
+      <div class="item">D</div>
+      <div class="item">E</div>
+      <div class="item">F</div>
+      <div class="item">G</div>
+      <div class="item">H</div>
+      <div class="item">I</div>
+    </div>
+  </div>
+  <a class="toNext" href="#">&gt;</a>
+</div>
+
+</div></body>
+</html>
