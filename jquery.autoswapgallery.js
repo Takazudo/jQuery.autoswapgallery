@@ -159,7 +159,7 @@
         this._fitty.on('dragstart', function() {
           return _this._timer.stop();
         });
-        this._fitty.on('slideend', function() {
+        this._fitty.on('dragend', function() {
           return _this._timer.restart();
         });
         return this;
@@ -184,8 +184,13 @@
       };
 
       Gallery.prototype.to = function(nextIndex, immediately) {
+        var animate;
+        if (immediately == null) {
+          immediately = false;
+        }
         nextIndex = this.adjustOverIndex(nextIndex);
-        this._fitty.to(nextIndex, true);
+        animate = !immediately;
+        this._fitty.to(nextIndex, animate);
         this.currentIndex = nextIndex;
         return this;
       };

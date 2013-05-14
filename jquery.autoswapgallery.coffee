@@ -116,7 +116,7 @@ do ($=jQuery, window=window, document=document) ->
         @currentIndex = data.index
       @_fitty.on 'dragstart', =>
         @_timer.stop()
-      @_fitty.on 'slideend', =>
+      @_fitty.on 'dragend', =>
         @_timer.restart()
 
       return this
@@ -133,10 +133,11 @@ do ($=jQuery, window=window, document=document) ->
         return 0
       return index
 
-    to: (nextIndex, immediately) ->
+    to: (nextIndex, immediately = false) ->
 
       nextIndex = @adjustOverIndex nextIndex
-      @_fitty.to nextIndex, true
+      animate = not immediately
+      @_fitty.to nextIndex, animate
       @currentIndex = nextIndex
       return this
 

@@ -4,7 +4,7 @@ autoswap gallery
 
 ## Demos
 
-foobar
+* [Basic](http://takazudo.github.io/jQuery.autoswapgallery/demos/1/)
 
 ## Usage
 
@@ -12,7 +12,7 @@ see demos
 
 ## Depends
 
-jQuery 1.9.1
+jQuery 1.9.1 (>=1.5.1)
 
 ## Browsers
 
