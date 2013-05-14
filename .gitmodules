@@ -1,0 +1,3 @@
+[submodule "jQuery.touchdragh"]
+	path = jQuery.touchdragh
+	url = git://github.com/Takazudo/jQuery.touchdragh.git
