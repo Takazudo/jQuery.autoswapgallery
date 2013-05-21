@@ -1,5 +1,5 @@
 /*! jQuery.autoswapgallery (https://github.com/Takazudo/jQuery.autoswapgallery)
- * lastupdate: 2013-05-14
+ * lastupdate: 2013-05-21
  * version: 0.0.0
  * author: 'Takazudo' Takeshi Takatsudo <takazudo@gmail.com>
  * License: MIT */
@@ -118,7 +118,8 @@
         interval: 2000,
         startDelay: 2000,
         selector_inner: null,
-        selector_item: null
+        selector_item: null,
+        dragger: null
       };
 
       function Gallery($el, options) {
@@ -147,11 +148,17 @@
       };
 
       Gallery.prototype._initializeFitty = function() {
-        var _this = this;
-        this.$el.touchdraghfitty({
+        var o,
+          _this = this;
+        o = {
           inner: this.options.selector_inner,
           item: this.options.selector_item
-        });
+        };
+        if (this.options.dragger) {
+          o.dragger = this.options.dragger;
+          o.useonlydragger = true;
+        }
+        this.$el.touchdraghfitty(o);
         this._fitty = this.$el.data('touchdraghfitty');
         this._fitty.on('indexchange', function(data) {
           return _this.currentIndex = data.index;

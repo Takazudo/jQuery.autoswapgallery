@@ -80,6 +80,7 @@ do ($=jQuery, window=window, document=document) ->
       startDelay: 2000
       selector_inner: null
       selector_item: null
+      dragger: null
 
     constructor: (@$el, options) ->
 
@@ -107,9 +108,15 @@ do ($=jQuery, window=window, document=document) ->
 
     _initializeFitty: ->
 
-      @$el.touchdraghfitty
+      o =
         inner: @options.selector_inner
         item: @options.selector_item
+
+      if @options.dragger
+        o.dragger = @options.dragger
+        o.useonlydragger = true
+
+      @$el.touchdraghfitty o
       @_fitty = @$el.data 'touchdraghfitty'
 
       @_fitty.on 'indexchange', (data) =>
