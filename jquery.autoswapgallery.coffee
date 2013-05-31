@@ -73,7 +73,7 @@ do ($=jQuery, window=window, document=document) ->
   # ============================================================
   # Gallery
 
-  class ns.Gallery
+  class ns.Gallery extends ns.Event
     
     @defaults =
       interval: 2000
@@ -83,7 +83,7 @@ do ($=jQuery, window=window, document=document) ->
       dragger: null
 
     constructor: (@$el, options) ->
-
+      
       @options = $.extend {}, ns.Gallery.defaults, options
 
       @currentIndex = 0
@@ -121,6 +121,7 @@ do ($=jQuery, window=window, document=document) ->
 
       @_fitty.on 'indexchange', (data) =>
         @currentIndex = data.index
+        @_triggerItemchange data.index
       @_fitty.on 'dragstart', =>
         @_timer.stop()
       @_fitty.on 'dragend', =>
@@ -139,6 +140,14 @@ do ($=jQuery, window=window, document=document) ->
       if index > @_maxIndex
         return 0
       return index
+
+    _triggerItemchange: (index) ->
+
+      data =
+        index: index
+      @trigger 'itemchange', data
+
+      return this
 
     to: (nextIndex, immediately = false) ->
 
