@@ -1,6 +1,6 @@
 /*! jQuery.autoswapgallery (https://github.com/Takazudo/jQuery.autoswapgallery)
  * lastupdate: 2013-06-13
- * version: 0.2.0
+ * version: 0.2.1
  * author: 'Takazudo' Takeshi Takatsudo <takazudo@gmail.com>
  * License: MIT */
 (function() {
