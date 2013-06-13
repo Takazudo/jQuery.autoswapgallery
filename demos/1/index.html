@@ -24,11 +24,10 @@ $(function() {
     var $box = $('.box', this);
 
     $box.autoswapgallery({
-      interval: 2000,
-      startDelay: 2000,
+      interval: 0,
       selector_inner: '.box-inner',
       selector_item: '.item',
-			dragger: $wrap
+      dragger: $wrap
     });
 
     var gallery = $box.data('autoswapgallery');

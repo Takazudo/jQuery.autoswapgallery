@@ -1,5 +1,5 @@
 /*! jQuery.autoswapgallery (https://github.com/Takazudo/jQuery.autoswapgallery)
- * lastupdate: 2013-05-31
+ * lastupdate: 2013-06-13
  * version: 0.2.0
  * author: 'Takazudo' Takeshi Takatsudo <takazudo@gmail.com>
  * License: MIT */
@@ -129,7 +129,9 @@
         this.options = $.extend({}, ns.Gallery.defaults, options);
         this.currentIndex = 0;
         this._maxIndex = (this.$el.find(this.options.selector_item)).length - 1;
-        this._timer = new ns.Timer(this.options.interval);
+        if (this.options.interval) {
+          this._timer = new ns.Timer(this.options.interval);
+        }
         this._initializeFitty();
         this._eventify();
         this._startFirstTimer();
@@ -137,6 +139,9 @@
 
       Gallery.prototype._startFirstTimer = function() {
         var _this = this;
+        if (!this._timer) {
+          return this;
+        }
         if (this.options.startDelay) {
           setTimeout(function() {
             if (!_this._timer.anyRestartFired) {
@@ -167,19 +172,25 @@
           return _this._triggerItemchange(data.index);
         });
         this._fitty.on('dragstart', function() {
-          return _this._timer.stop();
+          if (_this._timer != null) {
+            return _this._timer.stop();
+          }
         });
         this._fitty.on('dragend', function() {
-          return _this._timer.restart();
+          if (_this._timer != null) {
+            return _this._timer.restart();
+          }
         });
         return this;
       };
 
       Gallery.prototype._eventify = function() {
         var _this = this;
-        this._timer.on('tick', function() {
-          return _this.next();
-        });
+        if (this._timer != null) {
+          this._timer.on('tick', function() {
+            return _this.next();
+          });
+        }
         return this;
       };
 
@@ -207,7 +218,9 @@
         if (immediately == null) {
           immediately = false;
         }
-        this._timer.restart();
+        if (this._timer != null) {
+          this._timer.restart();
+        }
         nextIndex = this.adjustOverIndex(nextIndex);
         animate = !immediately;
         this._fitty.to(nextIndex, animate);

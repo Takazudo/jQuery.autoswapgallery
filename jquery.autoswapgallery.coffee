@@ -89,13 +89,16 @@ do ($=jQuery, window=window, document=document) ->
       @currentIndex = 0
       @_maxIndex = (@$el.find @options.selector_item).length - 1
 
-      @_timer = new ns.Timer @options.interval
+      if @options.interval
+        @_timer = new ns.Timer @options.interval
       @_initializeFitty()
       @_eventify()
 
       @_startFirstTimer()
 
     _startFirstTimer: ->
+
+      return this unless @_timer
 
       if @options.startDelay
         setTimeout =>
@@ -123,15 +126,18 @@ do ($=jQuery, window=window, document=document) ->
         @currentIndex = data.index
         @_triggerItemchange data.index
       @_fitty.on 'dragstart', =>
-        @_timer.stop()
+        if @_timer?
+          @_timer.stop()
       @_fitty.on 'dragend', =>
-        @_timer.restart()
+        if @_timer?
+          @_timer.restart()
 
       return this
 
     _eventify: ->
-      @_timer.on 'tick', =>
-        @next()
+      if @_timer?
+        @_timer.on 'tick', =>
+          @next()
       return this
 
     adjustOverIndex: (index) ->
@@ -151,7 +157,8 @@ do ($=jQuery, window=window, document=document) ->
 
     to: (nextIndex, immediately = false) ->
 
-      @_timer.restart()
+      if @_timer?
+        @_timer.restart()
       nextIndex = @adjustOverIndex nextIndex
       animate = not immediately
       @_fitty.to nextIndex, animate
